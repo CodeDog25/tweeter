@@ -9,12 +9,12 @@
   background-color: #4056A1;
   padding-left: 1.5em;
   padding-right: 1.5em;
-  
+  top: 0;
 }
 
 .nav-logo {
   font-family: "Bungee", sans-serif;
-  font-size: xx-large;
+  font-size: xxX-large;
   padding-top: 0.5em;
 }
 
@@ -22,4 +22,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+i {
+  color: #ff0000;
 }
