@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -59,17 +60,18 @@
           </div>
         </form>
       </section>
-      <article>
+      <section>
+      <article class="tweet-container">
         <header>
+          <div class="user-info">
           <div><img src="/images/user-sloth.png"></div>
-          <div>
-            <h4>username</h4>
+          <span>DizzySloth</span>
           </div>
-          <div>@username</div>
+          <span class="user-handle">@dizzysloth</span>
         </header>
-        <body>
-          <div>tweet text</div>
-        </body>
+        
+        <div class="tweet-content">Hello World!</div>
+      
         <footer>
           <span>10 days ago</span>
           <div>
@@ -79,6 +81,7 @@
           </div>
         </footer>
       </article>
+    </section>
     </main>
   </body>
 </html>
