@@ -20,7 +20,7 @@
   padding-right: 8px;
 }
 
-.new-tweet button {
+.new-tweet .tweet-submit-button {
   background-color: #4055a1;
   color: #FFFFFF;
   font-family: Bungee, sans-serif;
