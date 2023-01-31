@@ -47,13 +47,34 @@ const renderTweets = function(tweets) {
     // calls createTweetElement for each tweet
     // takes return value and appends it to the tweets container
     for (tweet of tweets) {
-      const $tweetElement = createTweetElement(tweet);
-      $("#tweets-container").append($tweetElement);
+      const tweetElement = createTweetElement(tweet);
+      $(".tweets-container").append(tweetElement);
     }
     return;
-  }
+}
+
+const postTweets = function () {
+    $.ajax({
+        url: "/tweets",
+        method: "POST",
+        data: $(".new-tweet form").serialize(),
+        success: (data) => {
+            console.log(data);
+        },
+        error: (error) => {
+            console.error(error);
+        }
+    })
+}
 
 
 $(document).ready(function () {
   renderTweets(data);
+
+  $(".new-tweet form").on("submit", function(event) {
+    event.preventDefault();
+    const serializedData = $(this).serialize();
+    $.post("/tweets", serializedData)
+    .then(renderTweets(data));
+  }) 
 });
