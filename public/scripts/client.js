@@ -4,21 +4,8 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-const data = {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    }
-
 const createTweetElement = function(tweetObj) {
-  let $tweet = $(`
+  const $tweet = $(`
   <article class="tweet-container">
         <header>
           <div class="user-info">
@@ -29,7 +16,7 @@ const createTweetElement = function(tweetObj) {
         </header>
         <div class="tweet-content">${tweetObj.content.text}</div>
         <footer>
-          <span>${tweetObj.created_at}</span>
+          <div class="timeago" datetime="2016-06-30 09:20:00>${tweetObj.created_at}</div>
           <div>
           <i class="fa-solid fa-flag"></i>
           <i class="fa-solid fa-retweet"></i>
@@ -39,7 +26,7 @@ const createTweetElement = function(tweetObj) {
       </article>
   `)
   return $tweet;
-}
+};
 
 
 const renderTweets = function(tweets) {
@@ -51,30 +38,42 @@ const renderTweets = function(tweets) {
       $(".tweets-container").append(tweetElement);
     }
     return;
-}
+};
 
 const postTweets = function () {
     $.ajax({
         url: "/tweets",
         method: "POST",
-        data: $(".new-tweet form").serialize(),
+        data: $(".tweet-form").serialize(),
+        dataType: "json",
         success: (data) => {
             console.log(data);
         },
         error: (error) => {
             console.error(error);
         }
-    })
-}
+    });
+};
 
+const loadTweets = function () {
+    $.ajax({
+        url: "/tweets",
+        method: "GET",
+        dataType: "json",
+        success: (data) => {
+            console.log(data);
+        },
+        error: (error) => {
+            console.error(error);
+        }
+    });
+};
 
 $(document).ready(function () {
-  renderTweets(data);
-
-  $(".new-tweet form").on("submit", function(event) {
+    renderTweets(data);
+    loadTweets();
+  $(".tweet-form").on("submit", function(event) {
     event.preventDefault();
-    const serializedData = $(this).serialize();
-    $.post("/tweets", serializedData)
-    .then(renderTweets(data));
+    postTweets();
   }) 
 });
