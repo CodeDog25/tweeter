@@ -3,12 +3,15 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+
+//Escape text to prevent cross-site scripting
 const escape = function (str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
+//Generate tweet element template
 const createTweetElement = function(tweetObj) {
   const user = tweetObj.user;
   const $tweet = $(`
@@ -31,50 +34,60 @@ const createTweetElement = function(tweetObj) {
         </footer>
       </article>
   `)
-  return $tweet;
+  return $tweet; 
 };
 
-
+//Prepends array of tweets to the tweets-container 
 const renderTweets = function(tweets) {
   for (const tweet of tweets) {
-    $(".tweets-container").append(createTweetElement(tweet));
+    $(".tweets-container").prepend(createTweetElement(tweet));
   }
 };
 
+//Ajax get request to get data json
 const loadTweets = function () {
-    $.ajax({
-        url: "/tweets",
-        method: "GET",
-        dataType: "json",
-        success: (data) => {
-          renderTweets(data);
-        },
-        error: (error) => {
-          console.error(error);
-        }
+    $.get("/tweets", function(data) {
+      $(".tweets-container").empty();
+      renderTweets(data);
     });
 };
 
-$(document).ready(function () {
-    $(".alert").css("display", "none");
-    
-    loadTweets();
+loadTweets();
 
-    $(".tweet-form").on("submit", function(event) {
-    event.preventDefault();
-
-    const tweet = $("#tweet-text").val();
-    if (!tweet) {
-      return $('.alert').html('<i class="fa-solid fa-triangle-exclamation"></i> Empty tweet!').slideDown();
-    }
-    if (tweet.length > 140) {
-      return $('.alert').html('<i class="fa-solid fa-triangle-exclamation"></i> Too long! Plz rspct our arbitrary limit of 140 chars.<i class="fa-solid fa-triangle-exclamation"></i> ').slideDown();
-    }
-    const newTweetData = $(this).serialize();
-    $('#tweet-text').val('');
-    $(this.counter).val(140);
-    $('.alert').text('');
-    $('.alert').slideUp('slow');
-    $.post("/tweets/", newTweetData, loadTweets)
+//Ajax post requests on submit 
+const newTweetData = function () {
+  $.ajax({
+    url: "/tweets",
+    method: "POST",
+    data: $(".tweet-form").serialize(),
+    success: () => {
+      $("#tweet-text").val("");
+      $(".counter").val(140);
+      $(".alert").text("");
+      loadTweets();
+    },
+    error: (error) => {
+      console.error(error);
+    },
   });
+};
+
+$(document).ready(function () {
+$(".alert").css("display", "none");
+   
+//Validates tweet
+$(".tweet-form").on("submit", function(event) {
+event.preventDefault();
+
+//error messages
+const tweet = $("#tweet-text").val();
+  if (!tweet) {
+    return $(".alert").html('<i class="fa-solid fa-triangle-exclamation"></i> Empty tweet!').slideDown();
+  }
+  if (tweet.length > 140) {
+    return $(".alert").html('<i class="fa-solid fa-triangle-exclamation"></i> Too long! Plz rspct our arbitrary limit of 140 chars.<i class="fa-solid fa-triangle-exclamation"></i> ').slideDown();
+  }
+  newTweetData();
+  });
+  
 });
