@@ -27,3 +27,12 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.alert {
+  color: #911f2b;
+  border: 1px solid #906192;
+  border-radius: 4px;
+  padding: 0.5em;
+  margin: 1em 0;
+  font-size: 0.75em;
+}
