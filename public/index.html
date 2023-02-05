@@ -45,7 +45,7 @@
         <div class="nav-icon"><i class="fa-solid fa-angles-down"></i></div>
       </div>
     </nav>
-    <header>
+    <header id="user">
       <div>
           <img src="/images/profile-hex.png"> 
       </div>
@@ -57,7 +57,8 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
-        <h2>Compose Tweet</h2>
+        <div class="alert"></div>
+        <h2></h2>
         <form class="tweet-form" action="/tweets" method="POST" enctype="application/x-www-form-urlencoded; charset=UTF-8">
           <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
           <div class="tweet-submit">
