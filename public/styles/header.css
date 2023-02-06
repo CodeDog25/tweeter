@@ -1,12 +1,21 @@
-header#user {
+body>header {
     height: 400px;
     width: 100%;
-    margin-top: 120px;
+    margin-top: 220px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #43007a;
-    background-image: url(https://www.transparenttextures.com/patterns/45-degree-fabric-light.png);
+    
     color: #FFFFFF;
 }
+.profile-pic {
+    margin-top: 80px;
+}
+
+.profile-name>h2 {
+    font-size: 30px;
+    margin-bottom: 60px;
+}
+
