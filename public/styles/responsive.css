@@ -1,0 +1,41 @@
+@media only screen and (min-width: 1024px) {
+    body {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+   body>header {
+      margin-right: 100px;
+      max-width: 600px;
+      margin-left: 60px
+    }
+  
+    h3 {
+      margin-top: 100px;
+    }
+
+    main {
+        width: 50%;
+        margin-top: 120px;
+        margin-right: 50px;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    body>header {
+        margin-top: 0px;
+      }
+    .user-profile {
+        margin-top: 67px;
+      }
+   .profile-pic {
+        height:55%;
+      }
+    .nav-bar {
+        background: #43007a;
+      }
+    .profile-name {
+        margin-top: -100px;
+      }
+  }
