@@ -20,3 +20,5 @@ This repository is the starter code for the project: Students will fork and clon
 - Chance
 
 ## Final Product
+<img width="1437" alt="Screen Shot 2023-02-05 at 5 25 57 PM" src="https://user-images.githubusercontent.com/88526405/216855823-c813bfcb-4f95-4bc9-a78c-453641e17485.png">
+<img width="925" alt="Screen Shot 2023-02-05 at 5 26 26 PM" src="https://user-images.githubusercontent.com/88526405/216855840-401f8553-4a0f-4591-9b9d-c4c9ffab4fc4.png">
